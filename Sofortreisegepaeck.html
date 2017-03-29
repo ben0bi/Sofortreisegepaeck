@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Sofortreisegepäck</title>
+<style type="text/css">
+
+/* SCREEN - Browser view! */
+@media screen
+{
+
+body
+{
+	color: #0A0;
+	background-color: #000022;
+	font-family: Courier, monospace;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+a
+{
+	color: #FA0;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration:none;
+}
+
+td
+{
+	text-align: center;
+	border-top: 0px;
+	border-left: 0px;
+}
+
+table
+{
+	border: 1px solid #006;
+	width: 100%;
+}
+
+.noborder
+{
+	border: 0px;
+}
+
+img
+{
+	width: 320px;
+	height: 240px;
+}
+
+.img
+{
+	width: 320px;
+	min-height: 240px;
+}
+
+.chk
+{
+	display:none;
+	width: 30px;
+}
+
+.noprint
+{
+	display: default;
+}
+
+.iprint
+{
+	display: default;
+}
+
+
+hr
+{
+	border-top: 0px;
+	border-bottom: 8px dashed #0A0;
+}
+
+.deleted {color: #000;}
+
+}
+
+/* PRINT - Printers view. */
+@media print
+{
+
+body
+{
+	color: #000;
+	background-color: #fff;
+	font-family: Courier, monospace;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+a
+{
+	color: #00F;
+	text-decoration:underline;
+}
+
+a:hover
+{
+	text-decoration:underline;
+}
+
+td
+{
+	text-align: center;
+	border: 1px solid #333;
+	border-top: 0px;
+	border-left: 0px;
+
+}
+
+table
+{
+	border: 1px solid #000;
+	width: 100%;
+}
+
+img
+{
+	width: 80px;
+	height: 60px;
+	/* make it gray to save color. */
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+.img
+{
+	width: 80px;
+	min-height: 60px;
+}
+
+/* Not modificable */
+.chk
+{
+	display: default;
+}
+
+.noprint
+{
+	display: none;
+}
+
+/* modificable */
+.noprint2
+{
+	display: default;
+}
+
+.iprint
+{
+	display: default;
+}
+
+
+/* ENDOF modificable */
+
+hr
+{
+	display: none;
+}
+
+font
+{
+	color:#000;
+}
+
+}
+</style>
+<script type="text/javascript">
+function printonly(myId, verbose)
+{
+	var pocheck=document.getElementById(myId).checked;
+	if(pocheck==true)
+	{
+		if(verbose) {alert('Es wird nur das fehlende Zeug gedruckt.');}
+		changePrintMedia('.noprint2 {display:none;}');
+		// not visible
+	}else{
+		if(verbose){alert("Alles wird gedruckt.");}
+		changePrintMedia('.noprint2 {display:default;}');
+		// visible
+	}
+}
+
+/* Same as above but for the images. */
+function printimages(myId, verbose)
+{
+	var pocheck=document.getElementById(myId).checked;
+	if(pocheck==true)
+	{
+		if(verbose) {alert('Es wird nur Text gedruckt, ohne Bilder.');}
+		changePrintMedia('.iprint {display:none;}');
+		// not visible
+	}else{
+		if(verbose){alert("Bilder werden mitgedruckt.");}
+		changePrintMedia('.iprint {display:default;}');
+		// visible
+	}
+}
+
+var inlineMediaStyle=null;
+function changePrintMedia(content)
+{
+	var head = document.getElementsByTagName('head')[0];
+	var newStyle = document.createElement('style');
+	newStyle.setAttribute('type', 'text/css');
+	newStyle.setAttribute('media', 'print');
+	newStyle.appendChild(document.createTextNode(content));
+
+	if (inlineMediaStyle != null)
+	{
+	    	head.replaceChild(newStyle, inlineMediaStyle)
+	}else{
+		head.appendChild(newStyle);
+    	}
+	inlineMediaStyle = newStyle;
+}
+
+</script>
+</head>
+<body>
+<center>
+
+			<!-- VERSION IS HERE v -->
+<a name="top"></a><h1>Sofortreisegepäck<br>v0.85&phi;</h1>
+
+<small><nobr>
+-&gt; v1.0 gibts wenn "Fehlendes" weg ist. ;)<br> 
+Zusammengestellt und archiviert von Benedict Jäggi @ Grenchen, Schweiz in den Jahren 29-30ahc (2015-2016ad)<br>
+Updates bitte an jaeggiben [at] gmail [dot] com</nobr></small>
+</center>
+<div class="noprint">
+<hr>
+<center><small><font color="#FF6699">--&gt; Keine Angst wegen Papier- oder Farbverbrauch. &lt;--</font><br />
+(Beim Drucken sind die Bilder kleiner & schwarz/weiss und gewisser Text wird nicht mitgedruckt.)<br />
+(Die <font color="#FF6699">Druckvorschau</font> ist bei den meisten Programmen direkt über dem "Drucken"-Befehl im "Datei"-Menü.)</small><br />
+<br />
+<font color="#FF6699">
+<nobr>Druckoptionen:
+<input type="checkbox" id="printonly" onclick="javascript:printonly('printonly',true);" > Nur <font color="#AA0000">Fehlendes</font> drucken.
+<input type="checkbox" id="printimages" onclick="javascript:printimages('printimages',true);" > Nur Text, ohne Bilder drucken.
+</nobr>
+</center>
+</font>
+<hr>
+<a href="#komplett">Komplette Ausrüstung</a><br />
+<br />
+<a href="#basis">Basis</a><br />
+<a href="#feuerbox">&nbsp;&nbsp;--&gt; Feuerbox</a><br />
+<a href="#tools">Werkzeuge</a><br />
+<a href="#hygiene">Hygiene</a><br />
+<a href="#kueche">Küche</a><br />
+<a href="#essen">Esswaren</a><br />
+<a href="#schutz">Schutz</a><br />
+<a href="#kleider">Kleidung</a><br />
+<a href="#velo">Velo-Bestückung</a><br />
+<a href="#anderes">Anderes</a><br />
+<br>
+<a href="#fehlend"><font color="#A00">Fehlendes</font></a>
+
+<script>
+	printonly('printonly',false); 		// call it once on load
+	printimages('printimages',false);	// dito
+</script>
+
+<hr><br />
+
+<a name="komplett"></a><h2>Komplette Ausrüstung <a href="#top" class="noprint">^</a></h2>
+
+<table border="0" class="noborder">
+	<tr>
+		<td style="text-align: left">Stand von Version 0.55&pi;<br>
+			<br>
+			Rucksack-Haupttasche: Kleider und Buch<br />
+			Vordere Tasche: Kochzeug<br />
+			Davor: Schlafsack<br />
+			Darunter: Zelt<br />
+			Untere Tasche (hinter Zelt): Werkzeuge, Seile, Säcke, Feuerbox, weiteres<br />
+			Obere Tasche ("Deckeltasche"): Kompass, kleinere Sachen wie Kartenspiel etc.<br />
+			Darauf angeschnallt: Besorgungsrucksack mit Zahnbürsten (v0.55&pi; hat noch keine Hygienetasche)<br />
+			Seitentaschen: Fernglas und Alu-Wärmedecke<br />
+			An der Seite: Sonnenbrille (Etui angemacht), zwei Zusatzkarabiner, Wasserflasche<br />
+		</td>
+		<td class="img"><img src="img/Alles_0.55pi.JPG" /></td><td class="img"><img src="img/Alles_Gepackt_0.55pi.JPG"/></td>
+	</tr>
+	<tr><td style="text-align: left">Das grosse Messer <small>ist zwischen Rückenpolster und Rucksack, da man es in der Schweiz nicht offen tragen darf. Somit muss man immer erst den Rucksack ausziehen, und dann noch (zusätzlich) das Messer aus der Hülle nehmen.</td><td>Die komplette Ausrüstung..</td><td>..passt an/in den Rucksack</td></tr>
+</table>
+</div>
+
+<hr><br />
+
+<div id="mainpart" class="noprint2">
+
+<!--
+Template:
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/.JPG" /></td><td>text</td><td>quelle</td><td>preis</td></tr>
+
+Bilder verkleinern:
+	mogrify -resize 1024x768 *.jpg
+-->
+
+
+<a name="basis"></a><h2>Basis <a href="#top" class="noprint">^</a></h2>
+<table border="1">
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Reiserucksack.JPG"></td><td>Stabiler, dunkler Reiserucksack mit Seitentaschen und anderen Befestigungsmöglichkeiten.</td><td>Dieser: <a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>???</td></tr>
+<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Besorgungsrucksack.JPG"></td><td>Kleiner Rucksack für Besorgungen, damit man nicht immer den ganzen Krempel mitschleppen muss.</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Zelt.JPG"></td><td>Normales Zelt</td><td>Irgendwo</td><td>ab 100.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Schlafsack.JPG"></td><td>Schlafsack</td><td>Irgendwo</td><td>50 - 100</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Schweres_Messer_Magnesiumfeuerzeug.JPG"></td><td>"Schweres" Messer mit Säge an der Rückseite, für gröbere Arbeiten.<br />(Hier: US Army Knife vom Army Shop)<br />+ Hülle für das Messer<br>+ Magnesiumfeuerzeug (selbst drangemacht)</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>60.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><a name="feuerbox_startpoint"></a><img src="img/Basic_Feuerbox_1.JPG"></td><td>Die
+ wasserdichte Feuerbox aus Metall enthält alles zum Feuer machen, so wie
+ Schreibzeug, Schnürsenkel und eine kleinere Notfallbox mit einem 
+Magnesiumfeuerzeug. Die zweite Drahtsäge hatte ich noch übrig. Genaue 
+Beschreibung siehe unten.<b><a href="#feuerbox">*</a></b></td><td>Box:(ein) Army Shop</td><td>15 - 30</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Fernglas.JPG"></td><td>Fernglas</td><td>Irgendwo</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Kompass.JPG"></td><td>Kompass</td><td>Irgendwo</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Naehzeug.JPG"></td><td>Box mit Nähzeug: Einige Näh- und Sicherheitsnadeln, verschiedene Fäden, Sternfaden in 3 Farben, Elastisches Band, 1 Rasierklinge</td><td>Variabel</td><td>Wenig</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Seil.JPG"></td><td>"Normales" Seil und zwei Dinger, um Schlaufen ohne Knoten zu machen.</td><td>Seil: <a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>15.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Stahlseil.JPG"></td><td>
+			<strike class="deleted">Stahlseil, 30m*2mm mit vorgefertigten Schlaufen. (Wenn richtig gerollt ist es kompakter als das normale Seil.)</strike><br />
+			--> Getestet und nicht für gut befunden. Kann man für Projekte brauchen, aber nicht zum Reisen.
+			</td><td><a href="http://www.landireso.ch/" target="_new">Landi, Grenchen</a></td><td>Seil: 15.-</td></tr>
+
+</tbody></table>
+
+<br>
+
+<a name="feuerbox"></a><h3><a href="#feuerbox_startpoint">*</a>Die Feuerbox <a href="#top" class="noprint">^</a></h3>
+<table border="1">
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Feuerbox_2.JPG"></td><td>Inhalt:
+ 9 Rechaud-Kerzen, Notbox, Verschiedene Schnürsenkel, Kugelschreiber, 
+Bleistift, Papier (3 Moleskine Notizhefte),3 Pack Zündhölzer, 2 
+Feuerzeuge, 1 Kondom (für Wasser, jaja :) )</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Basic_Feuerbox_2_Notbox.JPG"></td><td>Inhalt:
+ Feuerbox vom Army Shop, mit ein bisschen Draht, Nähzeug, Angelschnur 
+und -Haken, Salz, Zündhölzer (verpackt), Watte (wasserdicht verpackt), 
+Anzünder (Würfel, wasserdicht verpackt), Magnesiumfeuerzeug mit 
+Metallplatte, welche man auch als Essmesser benutzen kann.</td><td>Feuerbox: <a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>9.-</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="tools"></a><h2>Werkzeuge <a href="#top" class="noprint">^</a></h2>
+<table border="1">
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Tools_Messer_Victorinox_Ranger_1.JPG"></td><td>Schweizer Taschenmesser<br>Victorinox 1.3763 Ranger<br>Ranger ist wie "Victorinox Huntsman", hat jedoch noch eine Metallfeile und -Säge dazu.</td><td><a href="http://schwab-eisenwaren.ch/" target="_new">Schwab Eisenwaren, Grenchen</a></td><td>Ranger: 50.-<br>Huntsman: 35.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Tools_Gartenschere.JPG"></td><td>Gartenschere<br />Es lohnt sich, wenn man den Platz für das Zelt in ein grosses (Dornen-)Gebüsch hineinschneidet. Es ist dann von allen Seiten gut getarnt.</td><td><a href="http://www.landireso.ch/" target="_new">Landi, Grenchen</a></td><td>15.90</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Tools_Tools.JPG"></td><td>Kleine Toolbox mit Sechskantschlüsseln und Bits.</td><td><a href="http://schwab-eisenwaren.ch/" target="_new">Schwab Eisenwaren, Grenchen</a></td><td>29.90</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Tools_Drahtsaege.JPG"></td><td>(Draht-)Säge</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>6.- oder 9.-(?)</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="hygiene"></a><h2>Hygiene <a href="#top" class="noprint">^</a></h2>
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Hygiene_Badetuch.JPG"></td><td>Badetuch</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Hygiene_WC_Papier.JPG"></td><td>Rolle WC-Papier, wasserdicht verpackt</td><td>Variabel</td><td>Wenig</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Hygiene_Zahnbuersten.JPG"></td><td>Zahnbürste/n</td><td>Variabel</td><td>Wenig</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Hygiene_Untersuchungshandschuhe.JPG"></td><td>Untersuchungshandschuhe (weil sie so kompakt sind ;) )</td><td>Variabel</td><td>Wenig</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="kueche"></a><h2>Kueche <a href="#top" class="noprint">^</a></h2>
+<table border="1">
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Pflanzenbuch.JPG"></td><td>"Unsere essbaren Wildpflanzen"<br>ISBN: 978-3-440-13605-8</td><td><a href="http://www.buchhaus.ch/" target="_new">Bücher Lüthy, Grenchen</a></td><td>???</td></tr>	
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Wasserflasche_1Liter.JPG"></td><td>Wasserflasche 1L, mit Befestigungsmöglichkeit</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>???</td></tr>	
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Besteck.JPG"></td><td>Besteck</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>???</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Pfannen.JPG"></td><td>Reisepfannen</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>25.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Notkocher.JPG"></td><td>Notkocher</td><td><a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>???</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kueche_Abtrocknungstuch.JPG"></td><td>Abtrocknungstuch</td><td>Variabel</td><td>Variabel</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="essen"></a><h2>Esswaren <a href="#top" class="noprint">^</a></h2>
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Essen_Salz_Pfeffer.JPG"></td><td>Salz und Pfeffer</td><td>Variabel</td><td>Wenig</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Essen_Tee.JPG"></td><td>Schwarztee</td><td>Variabel</td><td>Wenig</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="schutz"></a><h2>Schutz <a href="#top" class="noprint">^</a></h2>
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Schutz_Reise_FirstAid_Kit.JPG"></td><td>Reise-Erste-Hilfe-Set</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Schutz_Handschuhe.JPG"></td><td>Gute Handschuhe (wärmend und zum Arbeiten geeignet, evt. auch mehrere Paare)</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Schutz_Sonnenbrille.JPG"></td><td>Sonnenbrille</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Schutz_Waermedecke.JPG"></td><td>Notfall-Wärmedecke</td><td>Variabel</td><td>Variabel</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="kleider"></a><h2>Kleidung <a href="#top" class="noprint">^</a></h2>
+
+Am besten sind dunkle Kleider, damit man in der Nacht nicht gleich entdeckt wird. Keine Tarnfarben, man könnte mit einem Soldaten verwechselt werden.
+
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Wanderschuhe.JPG" /></td><td>Gute, eingelaufene Wanderschuhe</td><td>Variabel</td><td>Variabel</td></tr>	
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Sandalen.JPG" /></td><td>Sandalen/Schlarpen</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Badehose.JPG"></td><td>Badehose/-Kleid/Bikini</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Muetzen.JPG"></td><td>Winter- und Sommerkappe</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Hosen.JPG" /></td><td>Hosen (2 Stück)</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_TShirts.JPG" /></td><td>T-Shirts (2 Stück)</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Pulli.JPG" /></td><td>Pullover mit Kapuze</td><td>Variabel</td><td>Variabel</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Kleider_Unterwaesche.JPG" /></td><td>Unterwäsche</td><td>Variabel</td><td>Variabel</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="velo"></a><h2>Fahrzeug Bestückung (Velo) <a href="#top" class="noprint">^</a></h2>
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Velo_Flickzeug.JPG"></td><td>Velo-Flickzeug-Set</td><td><a href="http://www.landireso.ch/" target="_new">Landi, Grenchen</a></td><td>7.90</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Velo_Pumpe.JPG"></td><td>Kleine Pumpe, am Velo befestigt</td><td><a href="http://www.landireso.ch/" target="_new">Landi, Grenchen</a></td><td>5.90 (?)</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Velo_Haengematte.JPG"></td><td>Kompakte Hängematte</td><td>Diese: Aldi, ansonsten: <a href="http://militarymegastore.ch/" target="_new">Army Shop, Zuchwil</a></td><td>c.a. 20.-</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Velo_Decke.JPG"></td><td>Decke (kompakt)</td><td>Diese: Lidl</td><td>Variabel</td></tr>
+</tbody></table>
+
+<br><br><hr><br>
+
+<a name="anderes"></a><h2>Anderes <a href="#top" class="noprint">^</a></h2>
+<table border="1">	
+	<tbody><tr><td class="chk">Check</td><td class="iprint">Bild</td><td>Text</td><td>Verkaufsstelle</td><td>Preis CHF</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Anderes_Kartenspiel.JPG"></td><td>Kartenspiel<br />(Französisches 52er Blatt)</td><td>Irgendwo</td><td>???</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Anderes_Wasserfester_Schreiber.JPG" /></td><td>Wasserfester Filzstift</td><td>Irgendwo</td><td>???</td></tr>
+		
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Solarladegeraet.JPG" /></td><td>Klappbares Solar-Ladegerät mit 3 A4 grossen Zellen und 2 USB-Ports.<br>Und ein normales Handykabel dazu. (Nicht inbegriffen)</td><td>Lidl</td><td>39.90</td></tr>
+	<tr><td class="chk"><input type="checkbox" /></td>
+		<td class="img iprint"><img src="img/Taschengrill.JPG" /></td><td>Kleiner Grill zum zusammenstecken. (Da passt das Ladegerät ^ gut rein. ;) )</td><td>Migros</td><td>19.90</td></tr>
+	</tbody></table>
+<center>
+
+<br><br><hr><br>
+
+<h2><a href="#top" class="noprint">^^^</a></h2>
+
+</div>
+
+<!-- FEHLENDES -->
+<font color="#AA0000">
+<a name="fehlend"></a>Noch fehlend:<br>
+<input type="checkbox">Taschenlampe + Batterien</input><br>
+<input type="checkbox">Wasserdichte Jacke (Sommer/Winter)</input><br>
+<input type="checkbox">Teller und Becher/Tasse (aus Metall/Holz)</input><br>
+<input type="checkbox">Zahnpasta</input><br>
+<input type="checkbox">Wasserfilter/-Tabletten</input><br>
+<input type="checkbox">Essen....</input><br>
+</font>
+
+<br>
+<center>
+<h2><a href="#top" class="noprint">^^^</a></h2>
+<br>
+
+<hr>
+
+<small>Alle Angaben ohne Gewähr, ohne Gewehr und ohne Pistole. Free to copy. Free to change.</small></center>
+
+</body>
+
+</html>
